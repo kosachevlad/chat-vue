@@ -14,6 +14,7 @@
         <transition name="fade-in" appear v-if="modal" out-in>
             <div class="chat__overlay">
                 <div class="chat__modal">
+                    <h1>Welcome!</h1>
                     <input type="text" class="chat__input chat__input_modal" v-model="user" placeholder="choose your name" v-on:keyup.enter="name">
                 </div>
             </div>
@@ -42,8 +43,9 @@
                 send(e) {
                     if (e.keyCode !== 13) {
                         return
-                    } 
-                    socket.emit('message.sent', this.message)
+                    }
+                    let chatMessage = this.user + ': ' + this.message;
+                    socket.emit('message.sent', chatMessage)
                     this.message = ''
                 },
                 name(e) {
@@ -55,9 +57,7 @@
                 }
             },
             created() {
-                socket.on('message', (message) => {
-                    this.message = '';
-                    this.message = `${this.user}: ${this.message}`;
+                socket.on('message', (message) => {                    
                     this.messages.push(message);
                 });
             }
