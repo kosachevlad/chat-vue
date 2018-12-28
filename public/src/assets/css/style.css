@@ -10,6 +10,7 @@ body, html{
     list-style-type: none;
     padding: 0;
     margin: 0;
+    min-height: calc(100vh - 42px);
 }
 .chat__list-item{
     padding: 10px;
@@ -25,7 +26,8 @@ body, html{
 .chat__input_sticky{
     position: sticky;
     bottom: 0;
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 .chat__input_modal{
     border-radius: 5px;
