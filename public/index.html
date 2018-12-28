@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="chat">
-        <transition name="fade-in" v-if="modal">
+        <transition name="fade-in" appear v-if="modal" out-in>
             <div class="chat__overlay">
                 <div class="chat__modal">
                     <input type="text" class="chat__input chat__input_modal" v-model="user" placeholder="choose your name" v-on:keydown="name">
