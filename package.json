@@ -16,7 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "vue2-touch-events": "^1.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
