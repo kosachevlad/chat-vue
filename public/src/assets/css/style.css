@@ -22,8 +22,8 @@ body, html{
     font-family: "Open Sans";
     padding: 10px;
 }
-.chat__input_fixed{
-    position: fixed;
+.chat__input_sticky{
+    position: sticky;
     bottom: 0;
     width: 100%;
 }

@@ -22,7 +22,7 @@
         <ul class="chat__list">
             <li class="chat__list-item" v-for="message in messages" >{{message}}</li>
         </ul>
-        <input type="text" class="chat__input chat__input_fixed" v-model="message" v-on:keydown="send" placeholder="Type a message">
+        <input type="text" class="chat__input chat__input_sticky" v-model="message" v-on:keydown="send" placeholder="Type a message">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.common.dev.js"></script>
