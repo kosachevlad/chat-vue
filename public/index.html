@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" href="src/assets/css/style.css">
+    <title>NodeJS Chat</title>
+</head>
+<body>
+    <div class="chat">
+        <ul class="chat__list">
+            <li class="chat__list-item" v-for="message in messages" >{{message}}</li>
+        </ul>
+
+        <input type="text" class="chat__input" v-model="message" v-on:keydown="send" placeholder="Type a message">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.common.dev.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        const socket = io()
+    </script>
+    <script>    
+            new Vue({
+                el: '.chat',
+                data: {
+                    message: '',
+                    messages: []
+                },
+                methods: {
+                    send: function(e) {
+                        if (e.keyCode !== 13) {
+                            return;
+                        } 
+                            socket.emit('message.sent', this.message);
+                        this.message = ''
+                        
+                        
+                    },
+                },
+                created() {
+                    
+                    socket.on('message', (message) => {
+                        this.messages.push(message);
+                    });
+                }
+            })
+        </script>
+</body>
+</html>
