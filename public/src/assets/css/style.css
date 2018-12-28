@@ -1,7 +1,8 @@
 body, html{
     margin: 0;
     color: #2c2c2c;
-    font-family: "Open Sans"
+    font-family: "Open Sans";
+    font-size: 18px;
 }
 .chat {
     width: 100%;
@@ -22,10 +23,11 @@ body, html{
 .chat__input{
     font-family: "Open Sans";
     padding: 10px;
+    font-size: 18px;
 }
 .chat__input::-webkit-input-placeholder { 
-    color: #000;
     font-weight: bold;
+    font-size: 18px;
 }
 .chat__input_sticky{
     position: sticky;
@@ -34,13 +36,13 @@ body, html{
     width: -moz-available;
 }
 .chat__input_modal{
-    border-radius: 5px;
-    border: 1px solid skyblue;
+    border-radius: 10px;
+    border: 3px solid skyblue;
     outline: none;
-    width: 250px;    
+    width: 245px;    
 }
 .chat__overlay{
-    background: #000;
+    background: rgb(228, 216, 147);
     position: fixed;
     opacity: 0.5;
     width: 100%;
@@ -54,7 +56,7 @@ body, html{
     top: 20%;
     left: calc(50% - 155px);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 /* animation */
 .fade-in-enter-active {
