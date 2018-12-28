@@ -1,7 +1,7 @@
-const express = require('express')
-const socketIO = require('socket.io')
-const path = require('path')
-const http = require('http')
+const express = require('express'),
+    socketIO = require('socket.io'),
+    path = require('path'),
+    http = require('http')
 
 const publicPath = path.join(__dirname, '../public')
 const port = process.env.PORT || 8000
@@ -13,14 +13,19 @@ const io = socketIO(server)
 app.use(express.static(publicPath))
 
 io.on('connection', (socket) => {
-    console.log('IO Connection')
-    const user = Date.now();
+    const newUser = '';
 
-    socket.on('message.sent', function(message) {
-        io.emit('message', user + ': ' + message);
+    socket.on('user.name', user => {
+        this.newUser = user;
+        io.emit('message', `Hello ${user}!`);
+    });
+    
+    socket.on('message.sent', message => {
+        
+        io.emit('message', `${message}`);
     });
 
-    io.emit('message', 'user ' + user + ' connected')
+    io.emit('message', 'someone connected')
 })
 
 server.listen(port, () => {

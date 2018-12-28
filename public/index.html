@@ -11,43 +11,56 @@
 </head>
 <body>
     <div class="chat">
+        <transition name="fade-in" v-if="modal">
+            <div class="chat__overlay">
+                <div class="chat__modal">
+                    <input type="text" class="chat__input chat__input_modal" v-model="user" placeholder="choose your name" v-on:keydown="name">
+                </div>
+            </div>
+        </transition>
+        
         <ul class="chat__list">
             <li class="chat__list-item" v-for="message in messages" >{{message}}</li>
         </ul>
-
-        <input type="text" class="chat__input" v-model="message" v-on:keydown="send" placeholder="Type a message">
+        <input type="text" class="chat__input chat__input_fixed" v-model="message" v-on:keydown="send" placeholder="Type a message">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.common.dev.js"></script>
     <script src="socket.io/socket.io.js"></script>
-    <script>
-        const socket = io()
-    </script>
+    <script>const socket = io();</script>
     <script>    
-            new Vue({
-                el: '.chat',
-                data: {
-                    message: '',
-                    messages: []
+        new Vue({
+            el: '.chat',
+            data: {
+                message: '',
+                messages: [],
+                modal: true,
+                user: ''
+            },
+            methods: {
+                send(e) {
+                    if (e.keyCode !== 13) {
+                        return
+                    } 
+                    socket.emit('message.sent', this.message)
+                    this.message = ''
                 },
-                methods: {
-                    send: function(e) {
-                        if (e.keyCode !== 13) {
-                            return;
-                        } 
-                            socket.emit('message.sent', this.message);
-                        this.message = ''
-                        
-                        
-                    },
-                },
-                created() {
-                    
-                    socket.on('message', (message) => {
-                        this.messages.push(message);
-                    });
+                name(e) {
+                    if (e.keyCode !== 13) {
+                        return 
+                    }
+                    socket.emit('user.name', this.user)
+                    this.modal = false
                 }
-            })
-        </script>
+            },
+            created() {
+                socket.on('message', (message) => {
+                    this.message = '';
+                    this.message = `${this.user}: ${this.message}`;
+                    this.messages.push(message);
+                });
+            }
+        })
+    </script>
 </body>
 </html>

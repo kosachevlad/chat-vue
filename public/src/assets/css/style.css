@@ -1,6 +1,6 @@
 body, html{
     margin: 0;
-    color: #555;
+    color: #2c2c2c;
     font-family: "Open Sans"
 }
 .chat {
@@ -20,9 +20,50 @@ body, html{
 }
 .chat__input{
     font-family: "Open Sans";
+    padding: 10px;
+}
+.chat__input_fixed{
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 10px;
-    bottom: 3px solid #f5f5f5
+}
+.chat__input_modal{
+    border-radius: 5px;
+    border: 1px solid skyblue;
+    outline: none;
+    width: 250px;    
+}
+.chat__overlay{
+    background: #f5f5f5;
+    position: fixed;
+    opacity: 0.5;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}
+.chat__modal{
+    background: #fff;
+    width: 270px;
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 155px);
+    padding: 20px;
+    border-radius: 5px;
+}
+/* animation */
+.fade-in-enter-active {
+    transition: 1s ease;
+}
+.fade-in-leave-active {
+    opacity: 0;
+    position: absolute;
+    
+}
+.fade-in-enter,
+.fade-in-leave-to {
+    opacity: 0;
+    
+}
+.fade-in-move{
+    transition: 1s ease;
 }
